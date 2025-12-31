@@ -1,7 +1,9 @@
 package com.darleyleal.nexus.presentation
 
+import android.graphics.Color.TRANSPARENT
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,10 +17,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import com.darleyleal.nexus.presentation.navigation.AppDestinations
 import com.darleyleal.nexus.presentation.screens.main.MainScreen
 import com.darleyleal.nexus.presentation.screens.main.NexusApp
 import com.darleyleal.nexus.presentation.theme.NexusTheme
+import com.darleyleal.nexus.presentation.theme.RichBlack
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

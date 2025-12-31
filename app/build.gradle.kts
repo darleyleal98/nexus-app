@@ -37,7 +37,6 @@ android {
         compose = true
     }
 }
-
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -58,4 +57,7 @@ dependencies {
 
     // Icons
     implementation("androidx.compose.material:material-icons-extended-android:1.7.8")
+
+    // StatusBarColor
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
 }
