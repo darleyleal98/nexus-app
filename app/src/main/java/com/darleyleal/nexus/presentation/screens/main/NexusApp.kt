@@ -15,6 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.darleyleal.nexus.presentation.navigation.AppDestinations
+import com.darleyleal.nexus.presentation.theme.DarkCyan
 import com.darleyleal.nexus.presentation.theme.LightGray
 import com.darleyleal.nexus.presentation.theme.RichBlack
 
@@ -23,7 +24,7 @@ fun NexusApp() {
     var currentDestination by rememberSaveable { mutableStateOf(AppDestinations.HOME) }
     val navigationItemColors = NavigationSuiteDefaults.itemColors(
         navigationBarItemColors = NavigationBarItemDefaults.colors(
-            indicatorColor = LightGray,
+            indicatorColor = DarkCyan,
             selectedIconColor = Color.White,
             selectedTextColor = Color.White,
             unselectedIconColor = Color.Gray,
