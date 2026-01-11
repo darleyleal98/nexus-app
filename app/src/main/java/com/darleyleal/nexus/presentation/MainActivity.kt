@@ -24,7 +24,9 @@ import com.darleyleal.nexus.presentation.screens.main.MainScreen
 import com.darleyleal.nexus.presentation.screens.main.NexusApp
 import com.darleyleal.nexus.presentation.theme.NexusTheme
 import com.darleyleal.nexus.presentation.theme.RichBlack
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,6 +1,5 @@
 package com.darleyleal.nexus.presentation.screens.profile
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -39,6 +38,9 @@ import com.darleyleal.nexus.presentation.theme.RichBlack
 fun ProfileScreen(modifier: Modifier = Modifier) {
     var showIsEditableBottomSheet by rememberSaveable { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+
+    var sourceUri by rememberSaveable { mutableStateOf("") }
+
     Scaffold(
         containerColor = RichBlack,
         topBar = {
@@ -57,7 +59,7 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
                     .fillMaxSize()
             ) {
                 Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    ProfileAvatar(isEditable = false)
+                    ProfileAvatar(isEditable = false, imageUri = sourceUri)
                     Text(
                         modifier = Modifier.padding(top = 8.dp),
                         text = "Darley Leal",
@@ -75,9 +77,7 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
                         Spacer(modifier = Modifier.padding(start = 8.dp))
                         Text(text = "Edit profile", style = MaterialTheme.typography.headlineMedium)
                     }
-                    Spacer(
-                        modifier = Modifier.padding(top = 12.dp)
-                    )
+                    Spacer(modifier = Modifier.padding(top = 12.dp))
                     ProfileSectionCards()
                     if (showIsEditableBottomSheet) {
                         ModalBottomSheet(
@@ -88,7 +88,15 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
                             sheetState = sheetState,
                             containerColor = RichBlack
                         ) {
-                            ProfileAvatar(isEditable = true)
+                            ProfileAvatar(
+                                isEditable = true,
+                                imageUri = sourceUri,
+                                imagePath = { uri ->
+                                    uri?.let {
+                                        sourceUri = it
+                                    } ?: ""
+                                }
+                            )
                             EditProfileForm()
                         }
                     }

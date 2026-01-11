@@ -17,6 +17,7 @@ import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -28,14 +29,24 @@ import coil3.compose.AsyncImage
 import coil3.compose.rememberAsyncImagePainter
 
 @Composable
-fun ProfileAvatar(modifier: Modifier = Modifier, isEditable: Boolean = false) {
-    val imageUri = rememberSaveable { mutableStateOf("") }
-    val painter = rememberAsyncImagePainter("")
+fun ProfileAvatar(
+    modifier: Modifier = Modifier,
+    isEditable: Boolean = false,
+    imageUri: String,
+    imagePath: (String?) -> Unit = {}
+) {
+    val imageUri = rememberSaveable { mutableStateOf(imageUri) }
 
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
-        uri?.let { imageUri.value = it.toString() }
+        uri?.let {
+            imageUri.value = it.toString()
+        }
+    }
+
+    LaunchedEffect(imageUri) {
+        imagePath(imageUri.value)
     }
 
     Column(
