@@ -16,6 +16,12 @@ val ChurcoalBlue = Color(color = 0xFF1B212B) // Elavated background (bottom shee
 val LightGray = Color.LightGray.copy(alpha = 0.2f)
 val DarkCyan = Color.Cyan.copy(alpha = 0.2f)
 
+val BackgroundTop = Color(0xFF1E1E1E)
+val BackgroundBottom = Color(0xFF0B0B0B)
+val PrimaryCyan = Color(0xFF4DE6E6)
+val TextPrimary = Color.White
+val TextSecondary = Color(0xFF9E9E9E)
+
 var DarkCyan50 = DarkCyan.copy(0.4f) // Button Color
 
 val MainText = Color(0xFFFFFFFF)

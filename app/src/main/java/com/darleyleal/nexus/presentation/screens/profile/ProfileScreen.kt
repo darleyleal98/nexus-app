@@ -28,7 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.darleyleal.nexus.R
 import com.darleyleal.nexus.presentation.components.NexusTitleAppBar
-import com.darleyleal.nexus.presentation.screens.profile.components.EditProfileForm
+import com.darleyleal.nexus.presentation.screens.profile.components.EditName
 import com.darleyleal.nexus.presentation.screens.profile.components.ProfileAvatar
 import com.darleyleal.nexus.presentation.screens.profile.components.ProfileSectionCards
 import com.darleyleal.nexus.presentation.theme.RichBlack
@@ -38,7 +38,7 @@ import com.darleyleal.nexus.presentation.theme.RichBlack
 fun ProfileScreen(modifier: Modifier = Modifier) {
     var showIsEditableBottomSheet by rememberSaveable { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
-
+    var name by rememberSaveable { mutableStateOf("") }
     var sourceUri by rememberSaveable { mutableStateOf("") }
 
     Scaffold(
@@ -59,10 +59,10 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
                     .fillMaxSize()
             ) {
                 Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    ProfileAvatar(isEditable = false, imageUri = sourceUri)
+                    ProfileAvatar(isEditable = false, currentImage = sourceUri)
                     Text(
                         modifier = Modifier.padding(top = 8.dp),
-                        text = "Darley Leal",
+                        text = name,
                         style = MaterialTheme.typography.displaySmall
                     )
                     Spacer(
@@ -88,16 +88,16 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
                             sheetState = sheetState,
                             containerColor = RichBlack
                         ) {
-                            ProfileAvatar(
-                                isEditable = true,
-                                imageUri = sourceUri,
-                                imagePath = { uri ->
-                                    uri?.let {
-                                        sourceUri = it
-                                    } ?: ""
+                            EditName(
+                                onSubmit = { userName, imagePath ->
+                                    name = userName
+                                    sourceUri = imagePath
+                                },
+                                currentImage = sourceUri,
+                                onClose = {
+                                    showIsEditableBottomSheet = !showIsEditableBottomSheet
                                 }
                             )
-                            EditProfileForm()
                         }
                     }
                 }

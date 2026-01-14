@@ -4,4 +4,6 @@
     <string name="name">Name</string>
     <string name="pin">PIN</string>
     <string name="biometrics">Biometrics</string>
+    <string name="field_is_required">Field is required</string>
+    <string name="default_web_client_id">292497826147-ctqbkc1jqa1k795800q1opvcceh70mcm.apps.googleusercontent.com</string>
 </resources>

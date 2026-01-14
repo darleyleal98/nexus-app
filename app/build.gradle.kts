@@ -5,6 +5,7 @@ plugins {
 
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -54,6 +55,7 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material3.adaptive.navigation.suite)
     implementation(libs.androidx.compose.runtime.saveable)
+    implementation(libs.androidx.datastore.core)
 
     // Compose - Debug & Tests
     debugImplementation(libs.androidx.compose.ui.tooling)
@@ -85,4 +87,23 @@ dependencies {
     // Room
     implementation("androidx.room:room-runtime:2.8.4")
     ksp("androidx.room:room-compiler:2.8.4")
+
+    // Firebase (BoM)
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-auth-ktx:19.3.1")
+
+    // AndroidX Credentials API
+    implementation("androidx.credentials:credentials:1.5.0")
+    implementation("androidx.credentials:credentials-play-services-auth:1.5.0")
+
+    // Google Identity Services
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
+
+    // Google Play Services Auth (Google Sign-In)
+    implementation("com.google.android.gms:play-services-auth:21.4.0")
+
+    // DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 }

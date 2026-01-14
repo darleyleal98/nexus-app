@@ -18,8 +18,10 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,21 +34,21 @@ import coil3.compose.rememberAsyncImagePainter
 fun ProfileAvatar(
     modifier: Modifier = Modifier,
     isEditable: Boolean = false,
-    imageUri: String,
-    imagePath: (String?) -> Unit = {}
+    imagePath: (String?) -> Unit = {},
+    currentImage: String?
 ) {
-    val imageUri = rememberSaveable { mutableStateOf(imageUri) }
+    var imageUri by rememberSaveable { mutableStateOf("") }
 
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         uri?.let {
-            imageUri.value = it.toString()
+            imageUri = it.toString()
         }
     }
 
     LaunchedEffect(imageUri) {
-        imagePath(imageUri.value)
+        imagePath(imageUri)
     }
 
     Column(
@@ -62,7 +64,7 @@ fun ProfileAvatar(
                     .size(162.dp)
             ) {
                 AsyncImage(
-                    model = imageUri.value,
+                    model = imageUri,
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier

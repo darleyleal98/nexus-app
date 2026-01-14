@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "905760446100",
+    "project_id": "nexus-d023c",
+    "storage_bucket": "nexus-d023c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905760446100:android:d30be7641b72eee7dac681",
+        "android_client_info": {
+          "package_name": "com.darleyleal.nexus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905760446100-dosf0n0bspms66mu9qonq21502689nmu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrBwyhEZv34fMNy-PZuRCN0qIa2XXHFz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905760446100-dosf0n0bspms66mu9qonq21502689nmu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
