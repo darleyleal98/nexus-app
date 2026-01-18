@@ -1,21 +1,25 @@
 package com.darleyleal.nexus.presentation
 
+import android.annotation.SuppressLint
+import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.navigation.compose.rememberNavController
+import com.darleyleal.nexus.presentation.navigation.AppNavigation
 import com.darleyleal.nexus.presentation.provider.ViewModelKey
 import com.darleyleal.nexus.presentation.provider.ViewModelProvider
 import com.darleyleal.nexus.presentation.screens.auth.AuthViewModel
 import com.darleyleal.nexus.presentation.screens.home.HomeViewModel
 import com.darleyleal.nexus.presentation.screens.investiments.InvestimentsViewModel
 import com.darleyleal.nexus.presentation.screens.loans.LoansViewModel
-import com.darleyleal.nexus.presentation.screens.login.LoginScreen
 import com.darleyleal.nexus.presentation.screens.login.LoginViewModel
-import com.darleyleal.nexus.presentation.screens.main.NexusApp
+import com.darleyleal.nexus.presentation.navigation.NexusApp
 import com.darleyleal.nexus.presentation.screens.profile.ProfileViewModel
 import com.darleyleal.nexus.presentation.screens.splash.SplashScreen
 import com.darleyleal.nexus.presentation.screens.wallet.WalletViewModel
@@ -30,6 +34,7 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var auth: FirebaseAuth
 
+    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -61,12 +66,20 @@ class MainActivity : ComponentActivity() {
                 val isAuthenticated by authViewModel.isAuthenticated.collectAsState()
                 val isLoading by authViewModel.isLoading.collectAsState()
 
+                requestedOrientation = SCREEN_ORIENTATION_PORTRAIT
+
+                val navController = rememberNavController()
+
                 when {
                     isLoading -> SplashScreen()
                     isAuthenticated -> NexusApp(viewModelProvider = viewModelProvider)
-                    else -> LoginScreen(viewModelProvider = viewModelProvider, onNavigateToMainScreen = {
-
-                    })
+                    else -> {
+                        Scaffold() { paddingValues ->
+                            AppNavigation(
+                                navController = navController, viewModelProvider = viewModelProvider, paddingValues = paddingValues
+                            )
+                        }
+                    }
                 }
             }
         }

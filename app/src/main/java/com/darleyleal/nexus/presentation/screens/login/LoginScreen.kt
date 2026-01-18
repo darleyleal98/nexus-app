@@ -54,8 +54,7 @@ fun LoginScreen(
     val systemUiController = rememberSystemUiController()
     val context = LocalContext.current
 
-    val loginViewModel =
-        viewModelProvider.getViewModel(ViewModelKey.LOGIN) as LoginViewModel
+    val loginViewModel = viewModelProvider.getViewModel(ViewModelKey.LOGIN) as LoginViewModel
 
     val isSuccessful by loginViewModel.isSuccessful.collectAsState()
     val isFailure by loginViewModel.isFailure.collectAsState()
