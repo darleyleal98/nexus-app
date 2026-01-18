@@ -15,6 +15,7 @@ val Gunmetal = Color(color = 0xFF151A21) // Surface background (card, lists)
 val ChurcoalBlue = Color(color = 0xFF1B212B) // Elavated background (bottom sheet)
 val LightGray = Color.LightGray.copy(alpha = 0.2f)
 val DarkCyan = Color.Cyan.copy(alpha = 0.2f)
+var Cyan = Color(0xFF4DE6E6)
 
 val BackgroundTop = Color(0xFF1E1E1E)
 val BackgroundBottom = Color(0xFF0B0B0B)

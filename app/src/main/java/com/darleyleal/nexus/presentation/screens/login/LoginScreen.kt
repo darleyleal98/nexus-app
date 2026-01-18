@@ -2,6 +2,7 @@ package com.darleyleal.nexus.presentation.screens.login
 
 import android.annotation.SuppressLint
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,11 +14,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -36,13 +39,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.darleyleal.nexus.R
 import com.darleyleal.nexus.presentation.provider.ViewModelKey
 import com.darleyleal.nexus.presentation.provider.ViewModelProvider
+import com.darleyleal.nexus.presentation.theme.Cyan
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -108,7 +115,7 @@ fun LoginScreen(
 
                 Text(
                     text = "neXus",
-                    fontSize = 68.sp,
+                    fontSize = 78.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = Color(0xFF4DE6E6)
                 )
@@ -124,7 +131,7 @@ fun LoginScreen(
                             color = Color(0xFF9E9E9E)
                         )
                     },
-                    shape = RoundedCornerShape(12.dp),
+                    shape = RoundedCornerShape(100.dp),
                     singleLine = true,
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = Color.Transparent,
@@ -138,18 +145,18 @@ fun LoginScreen(
                     modifier = Modifier.fillMaxWidth()
                 )
 
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
                     value = password,
                     onValueChange = { password = it },
                     label = {
                         Text(
-                            text = "Senha",
+                            text = "Password",
                             color = Color(0xFF9E9E9E)
                         )
                     },
-                    shape = RoundedCornerShape(12.dp),
+                    shape = RoundedCornerShape(100.dp),
                     singleLine = true,
                     visualTransformation = PasswordVisualTransformation(),
                     colors = TextFieldDefaults.colors(
@@ -164,7 +171,7 @@ fun LoginScreen(
                     modifier = Modifier.fillMaxWidth()
                 )
 
-                Spacer(modifier = Modifier.height(36.dp))
+                Spacer(modifier = Modifier.height(24.dp))
 
                 Button(
                     modifier = Modifier
@@ -180,7 +187,7 @@ fun LoginScreen(
                         } else {
                             Toast.makeText(
                                 context,
-                                "Preencha todos os campos",
+                                "All the fields are required",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -194,6 +201,67 @@ fun LoginScreen(
                     )
                 }
 
+                Spacer(modifier = Modifier.height(32.dp))
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center,
+                    modifier = Modifier.padding(horizontal = 8.dp)
+                ) {
+                    HorizontalDivider(
+                        color = Cyan,
+                        modifier = Modifier.weight(0.4f)
+                    )
+
+                    Row(
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Spacer(modifier = Modifier.width(16.dp))
+
+                        Text(
+                            text = "Or",
+                            color = Color(0xFF4DE6E6),
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Medium
+                        )
+
+                        Spacer(modifier = Modifier.width(16.dp))
+                    }
+
+                    HorizontalDivider(
+                        color = Color(0xFF4DE6E6),
+                        modifier = Modifier.weight(0.4f)
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(32.dp))
+
+                OutlinedButton(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(56.dp),
+                    onClick = {
+
+                    }
+                ) {
+                    Image(
+                        painterResource(R.drawable.google),
+                        contentDescription = null,
+                        contentScale = ContentScale.Inside,
+                        modifier = Modifier.size(28.dp)
+                    )
+
+                    Spacer(modifier = Modifier.padding(start = 16.dp))
+
+                    Text(
+                        text = "Continue with Google",
+                        color = Cyan,
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                }
+
                 Spacer(modifier = Modifier.weight(1f))
 
                 Row(
@@ -201,7 +269,7 @@ fun LoginScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Esqueci a senha",
+                        text = "Forgot password",
                         color = Color(0xFF9E9E9E),
                         fontSize = 14.sp
                     )
@@ -209,7 +277,7 @@ fun LoginScreen(
                     Spacer(modifier = Modifier.width(16.dp))
 
                     Text(
-                        text = "Criar uma conta",
+                        text = "Create account",
                         color = Color(0xFF4DE6E6),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium
